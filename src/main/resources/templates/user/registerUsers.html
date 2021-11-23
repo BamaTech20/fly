@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inscription</title>
+
+<link href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<section class="get-in-touch">
+		<h1 class="title">Inscription</h1>
+		<div th:if="${param.username}">
+			<div class="alert alert-danger">Cet utilisateur exsiste</div>
+		</div>
+
+		<div th:if="${param.success}">
+			<div class="alert alert-info">Enrégistrement reussi</div>
+		</div>
+		<form class="contact-form row" th:action="@{/register_user}"
+			th:object="${userRegistrationDto}" method="post">
+			<div class="form-field col-lg-6">
+				<input id="name" th:field="*{firstName}" class="input-text js-input"
+					type="text" required> <label class="label" for="name">Nom</label>
+			</div>
+			<div class="form-field col-lg-6 ">
+				<input id="email" th:field="*{userName}" class="input-text js-input"
+					type="email" required> <label class="label" for="email">E-mail</label>
+			</div>
+			<div class="form-field col-lg-6 ">
+				<input id="company" th:field="*{lastName}"
+					class="input-text js-input" type="text" required> <label
+					class="label" for="company">Prénom</label>
+			</div>
+			<div class="form-field col-lg-6 ">
+				<input id="phone" th:field="*{password}" class="input-text js-input"
+					type="text" required> <label class="label" for="phone">Mot de passe
+					</label>
+			</div>
+
+			<div class="form-field col-lg-12">
+				<input class="submit-btn" type="submit" value="Inscription">
+			</div>
+			<p class="title">
+                        Vous avez un compte ? <a th:href="@{/login}" class="text-center">Se
+                            connecter </a>
+                    </p>
+		</form>
+	</section>
+
+</body>
+</html>

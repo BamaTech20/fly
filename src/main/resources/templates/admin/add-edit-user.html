@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Product Details</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>Details des utilisateurs</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<!-- 			<li class="active">Product Details</li>
+ -->
+		</ol>
+	</section>
+	<div layout:fragment="content">
+
+		<div class="col-md-12">
+			<!-- Horizontal Form -->
+			<div class="box box-info">
+				<div class="box-header with-border">
+					<h3 class="box-title">Details des utilisateurs</h3>
+				</div>
+				<!-- /.box-header -->
+				<!-- form start -->
+				<form th:action="@{/admin/update}" th:object="${user}" method="post"
+					class="form-horizontal">
+					<div class="box-body">
+						<div class="form-group">
+							<label class="col-sm-2 control-label"> Id</label>
+
+							<div class="col-sm-10">
+								<input type="text" class="form-control" readonly="readonly"
+									th:field="*{id}" placeholder="User ID">
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Nom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" th:field="*{FirstName}" />
+							</div>
+						</div>
+
+						 <div class="form-group">
+							<label class="col-sm-2 control-label">Prenom</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" th:field="*{LastName}" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Mot de passe</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" th:field="*{Password}" />
+							</div>
+						</div>
+
+					</div>
+					<!-- /.box-body -->
+					<div class="box-footer center">
+						<a th:href="@{/admin/list}">
+							<button type="button" class="btn btn-default">
+								<i class="fa fa-right"></i> Retour
+							</button>
+						</a>
+						<button type="submit" class="btn btn-info pull-right">
+							<i class="fa fa-save"></i> Sauvegarde
+						</button>
+					</div>
+					<!-- /.box-footer -->
+				</form>
+			</div>
+			<!-- /.box -->
+		</div>
+	</div>
+
+	<th:block layout:fragment="script">
+		<script>
+			
+		</script>
+	</th:block>
+
+</body>
+
+</html>

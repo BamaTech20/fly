@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>Dashboard</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>
+			List des billes <small>Controle des
+				billets </small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+	</section>
+	<div layout:fragment="content">
+
+		<div class="row">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<table id="example1"
+						class="table table-bordered table-striped dataTable" role="grid"
+						aria-describedby="example1_info">
+						<thead class="thead">
+							<tr>
+								<th>ID</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Roles</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user : ${Users}">
+								<td th:text="${user.id}">ID</td>
+								<td th:text="${user.firstName}">Nom</td>
+								<td th:text="${user.roles}">Prenom</td>
+								<td sec:authorize="hasAnyAuthority('ADMIN')" th:text="ADMIN">Roles</td>
+
+								<td><a href="#"
+									class="btn btn-primary btn-xs purple editView" title="Edit"
+									th:href="@{'/admin/edit/' + ${user.id}}"><i
+										class="fa fa-edit"></i> Modifier</a> <a href="#"
+									class="btn btn-danger btn-xs purple deleteView" title="Delete"
+									th:href="@{'/admin/delete/' + ${user.id}}"><i
+										class="fa fa-trash-o"></i>Supprimer</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<th:block layout:fragment="script">
+		<script>
+			$(function() {
+
+				$('#example1').DataTable({
+					'paging' : true,
+					'lengthChange' : false,
+					'searching' : true,
+					'ordering' : true,
+					'info' : true,
+					'autoWidth' : false
+				})
+
+				jQuery('#example1_wrapper input').addClass(
+						"form-control input-sm"); // modify table search input
+			})
+		</script>
+	</th:block>
+</body>
+
+</html>

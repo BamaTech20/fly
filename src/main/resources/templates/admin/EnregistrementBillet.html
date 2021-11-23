@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Inscription</title>
+</head>
+<body>
+	<section layout:fragment="header">
+		<h1>
+			List des Administracteurs <small>Controle des
+				Administracteurs</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">Dashboard</li>
+		</ol>
+	</section>
+
+
+	<div layout:fragment="content">
+
+		<div class="container">
+
+
+			<div class="col-xs-5">
+				<h2 class="sub-header">Subtitle</h2>
+				<div class="table-responsive">
+					<form th:action="@{/billet/saveBillet}" th:object="${billet}"
+						method="post">
+
+						<div class="form-group input-group">
+							<label class="control-label">Date d'enrégistrement du
+								billet</label> <input th:field="*{dateSave}" required
+								class="form-control" type="date">
+						</div>
+
+						<div class="form-group input-group">
+							<label class="control-label">Numéro</label> <input name=""
+								th:field="*{numero}" class="form-control" required type="number">
+						</div>
+
+						<div class="form-group input-group">
+							<label class="control-label">Destination</label> <input name=""
+								th:field="*{destination}" class="form-control" required
+								type="text">
+						</div>
+
+						<div class="form-group input-group">
+							<label class="control-label">Date de départ</label> <input
+								required th:field="*{dateDepart}" class="form-control"
+								type="date">
+						</div>
+
+						<div class="form-group input-group">
+							<label class="control-label">Date d'arrivé</label> <input
+								th:field="*{dateArrive}" required class="form-control"
+								type="date">
+						</div>
+
+						<div class="form-group input-group">
+							<label class="control-label">Actif</label> <input name="actif"
+								th:field="*{actif}" th:checked="*{actif}" type="checkbox">
+						</div>
+
+						form-group//
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block">
+								Ajouter</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<h2 class="text-center">Latest Incidents</h2>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="col-md-1">#</th>
+								<th class="col-md-2">Header</th>
+								<th class="col-md-3">Header</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="col-md-1">1,001</td>
+								<td class="col-md-2">1,001</td>
+								<td class="col-md-3">1,001</td>
+							</tr>
+							<tr>
+								<td class="col-md-1">1,001</td>
+								<td class="col-md-2">1,001</td>
+								<td class="col-md-3">1,001</td>
+							</tr>
+							<tr>
+								<td class="col-md-1">1,001</td>
+								<td class="col-md-2">1,001</td>
+								<td class="col-md-3">1,001</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- 	<br>
+			<p class="note">Flymyway</p>
+			<hr>
+
+			<div class="card bg-light">
+				<article class="card-body mx-auto" style="max-width: 400px;">
+					<h4 class="card-title mt-3 text-center">Enrigistrer un billet
+						d'avion</h4>
+					<div th:if="${param.error}">
+						<div class="alert alert-danger">Cet billet exsiste</div>
+					</div>
+
+					<div th:if="${param.success}">
+						<div class="alert alert-info">Enrégistrement reussi</div>
+					</div>
+
+					<div class="col-xs-6">
+						<div class="table-responsive">
+							<form th:action="@{/billet/saveBillet}" th:object="${billet}"
+								method="post">
+
+								<div class="form-group input-group">
+									<label class="control-label">Date d'enrégistrement du
+										billet</label> <input th:field="*{dateSave}" required
+										class="form-control" type="date">
+								</div>
+
+								<div class="form-group input-group">
+									<label class="control-label">Numéro</label> <input name=""
+										th:field="*{numero}" class="form-control" required
+										type="number">
+								</div>
+
+								<div class="form-group input-group">
+									<label class="control-label">Destination</label> <input name=""
+										th:field="*{destination}" class="form-control" required
+										type="text">
+								</div>
+
+								<div class="form-group input-group">
+									<label class="control-label">Date de départ</label> <input
+										required th:field="*{dateDepart}" class="form-control"
+										type="date">
+								</div>
+
+								<div class="form-group input-group">
+									<label class="control-label">Date d'arrivé</label> <input
+										th:field="*{dateArrive}" required class="form-control"
+										type="date">
+								</div>
+
+								<div class="form-group input-group">
+									<label class="control-label">Actif</label> <input name="actif"
+										th:field="*{actif}" th:checked="*{actif}" type="checkbox">
+								</div>
+
+								form-group//
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary btn-block">
+										Ajouter</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+
+				</article>
+
+			</div>
+			<div class="table-responsive col-md-5">
+				<h2 class="sub-header">Liste des billets</h2>
+
+				<table class="table table-striped">
+
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Roles</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="user : ${Users}">
+							<td th:text="${user.id}">ID</td>
+							<td th:text="${user.firstName}">Nom</td>
+							<td th:text="${user.roles}">Prenom</td>
+
+							<td><a href="#"
+								class="btn btn-primary btn-xs purple editView" title="Edit"
+								th:href="@{'/admin/edit/' + ${user.id}}"><i
+									class="fa fa-edit"></i> Modifier</a> <a href="#"
+								class="btn btn-danger btn-xs purple deleteView" title="Delete"
+								th:href="@{'/admin/delete/' + ${user.id}}"><i
+									class="fa fa-trash-o"></i>Supprimer</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			card.//
+ -->
+		</div>
+		<!--container end.//-->
+	</div>
+
+	<br>
+	<br>
+	<article class="bg-secondary mb-3">
+		<div class="card-body text-center">
+			<h3 class="text-white mt-3">CopyRight</h3>
+
+		</div>
+		<br> <br>
+	</article>
+</body>
+</html>
+
+
