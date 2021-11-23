@@ -8,6 +8,6 @@ public class FlymywayApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FlymywayApplication.class, args);
-		//bonjour
+		//bonjour c est diarr
 	}
 }
