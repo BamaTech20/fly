@@ -1,18 +1,11 @@
 package com.example.fmw.controler;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.fmw.entity.User;
-import com.example.fmw.entity.AdminRegistration;
 import com.example.fmw.services.IUserService;
 
 @Controller
@@ -30,30 +23,27 @@ public class LoginController {
 
 
 	
-	@GetMapping("/register_user")
-	public String registeruser(Model model) {
-		AdminRegistration userRegistrationDto = new AdminRegistration();
-		model.addAttribute("userRegistrationDto", userRegistrationDto);
-
-		return "user/registerUsers";
-	}
-
-	@PostMapping("/register_user")
-	public String registerUser(
-			@Valid @ModelAttribute("userRegistrationDto") AdminRegistration userRegistrationDto, BindingResult result,
-			Model model) {
-		model.addAttribute("userRegistrationDto", userRegistrationDto);
-
-		User userExists = userService.findByUsername(userRegistrationDto.getUserName());
-
-		if (userExists != null) {
-			return "redirect:/register_user?username";
-		}
-		// if(result.hasErrors()){ return "admin/auth/register"; }
-
-		userService.save2(userRegistrationDto);
-		return "redirect:/register_user?success";
-	}
+	/*
+	 * @GetMapping("/register_user") public String registeruser(Model model) {
+	 * model.addAttribute("userRegistrationDto", userRegistrationDto);
+	 * 
+	 * return "user/registerUsers"; }
+	 * 
+	 * @PostMapping("/register_user") public String registerUser(
+	 * 
+	 * @Valid @ModelAttribute("userRegistrationDto") AdminRegistration
+	 * userRegistrationDto, BindingResult result, Model model) {
+	 * model.addAttribute("userRegistrationDto", userRegistrationDto);
+	 * 
+	 * User userExists =
+	 * userService.findByUsername(userRegistrationDto.getUserName());
+	 * 
+	 * if (userExists != null) { return "redirect:/register_user?username"; } //
+	 * if(result.hasErrors()){ return "admin/auth/register"; }
+	 * 
+	 * userService.save2(userRegistrationDto); return
+	 * "redirect:/register_user?success"; }
+	 */
 	
 
 	

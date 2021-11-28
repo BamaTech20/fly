@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.fmw.entity.AdminRegistration;
 import com.example.fmw.entity.User;
 import com.example.fmw.services.IUserService;
 import com.example.fmw.services.UserServiceImpl;
@@ -32,12 +31,11 @@ public class AdminController {
 	private String list_redirect = "redirect:/admin/list";
 
 	@GetMapping("/list")
-	public String listProduct(Model model) {
-		AdminRegistration userRegistrationDto = new AdminRegistration();
+	public String listProduct(Model model, User user) {
 
-		Iterable<User> user = userServiceImpl.listAll();
-		model.addAttribute("Users", user);
-		model.addAttribute("userRegistrationDto", userRegistrationDto);
+		Iterable<User> users = userServiceImpl.listAll();
+		model.addAttribute("Users", users);
+		model.addAttribute("userRegistrationDto", user);
 
 		return template;
 	}
@@ -59,37 +57,36 @@ public class AdminController {
 	}
 
 	@PostMapping("/update")
-	public String update( AdminRegistration user, BindingResult result,User users,
+	public String update(BindingResult result,User user,
 			Model model) {
 		model.addAttribute("user", user);
 
-		userServiceImpl.update(user, users);
+		userServiceImpl.update(user);
 		return list_redirect;
 	}
 	
     
 	@GetMapping("/register")
-	public String register(Model model) {
-		AdminRegistration userRegistrationDto = new AdminRegistration();
-		model.addAttribute("userRegistrationDto", userRegistrationDto);
+	public String register(Model model,User user) {
+		model.addAttribute("userRegistrationDto", user);
 
 		return template;
 	}
 
 	@PostMapping("/register")
 	public String registerUserAccount(
-			@Valid @ModelAttribute("userRegistrationDto") AdminRegistration userRegistrationDto, BindingResult result,
+			@Valid @ModelAttribute("userRegistrationDto") User user, BindingResult result,
 			Model model) {
-		model.addAttribute("userRegistrationDto", userRegistrationDto);
+		model.addAttribute("userRegistrationDto", user);
 
-		User userExists = userService.findByUsername(userRegistrationDto.getUserName());
+		User userExists = userService.findByUsername(user.getEmail());
 
 		if (userExists != null) {
 			return "redirect:/register?username";
 		}
 		// if(result.hasErrors()){ return "admin/auth/register"; }
 
-		userService.save(userRegistrationDto);
+		userService.save(user);
 		return "redirect:/register?success";
 	}
 	//"admin/list-admin"

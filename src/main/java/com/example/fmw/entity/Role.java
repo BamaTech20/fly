@@ -5,31 +5,35 @@ import javax.persistence.*;
 @Entity
 @Table(name = "role")
 public class Role {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false, length = 45)
+	private String name;
 
-	public Role() {
-
-	}
-
+	public Role() { }
+	
 	public Role(String name) {
-		super();
+		this.name = name;
+	}
+	
+	public Role(Integer id, String name) {
+		this.id = id;
 		this.name = name;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "role_id")
-	private Long id;
-
-	public Long getId() {
+	public Role(Integer id) {
+		this.id = id;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	@Column(name = "name")
-	private String name;
 
 	public String getName() {
 		return name;
@@ -44,5 +48,4 @@ public class Role {
 		return this.name;
 	}
 	
-	// other getters and setters are hidden for brevity
 }

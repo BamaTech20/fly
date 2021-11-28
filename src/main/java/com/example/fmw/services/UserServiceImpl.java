@@ -1,6 +1,5 @@
 package com.example.fmw.services;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.fmw.entity.Role;
 import com.example.fmw.entity.User;
-import com.example.fmw.entity.AdminRegistration;
 import com.example.fmw.repository.IRoleRepository;
 import com.example.fmw.repository.IUserRepository;
 
@@ -36,13 +34,10 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public User save(AdminRegistration registrationDto) {
-
-		// Creating admin role user
-		User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-				registrationDto.getUserName(), passwordEncoder.encode(registrationDto.getPassword()),
-				Arrays.asList(roleRepository.findByName("ADMIN")));
-
+	public User save(User user) {
+		Role roleUser = roleRepository.findByName("ADMIN");
+		user.addRole(roleUser);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
 
@@ -78,9 +73,9 @@ public class UserServiceImpl implements IUserService {
 		return userRepository.findById(id).get();
 	}
 
-	public void update(AdminRegistration user, User use) {
+	public void update(User user) {
 
-		User us = userRepository.findByid(use.getId());
+		User us = userRepository.findByid(user.getId());
 		us.setFirstName(user.getFirstName());
 
 		if (us.getFirstName() != null) {
@@ -97,17 +92,19 @@ public class UserServiceImpl implements IUserService {
 
 	}
 
-	@Override
-	public User save2(AdminRegistration registrationDto) {
 
-		// Creating user role user
-		User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-				registrationDto.getUserName(), passwordEncoder.encode(registrationDto.getPassword()),
-				Arrays.asList(roleRepository.findByName("USER")));
 
-		return userRepository.save(user);
-	}
-
+	/*
+	 * @Override public User save2(AdminRegistration registrationDto) {
+	 * 
+	 * // Creating user role user User user = new
+	 * User(registrationDto.getFirstName(), registrationDto.getLastName(),
+	 * registrationDto.getUserName(),
+	 * passwordEncoder.encode(registrationDto.getPassword()),
+	 * Arrays.asList(roleRepository.findByName("USER")));
+	 * 
+	 * return userRepository.save(user); }
+	 */
 
 	/*
 	 * public void update(AdminRegistration user, User use) {
