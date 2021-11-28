@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.fmw.entity.User;
-import com.example.fmw.services.UserServiceImpl;
+import com.example.fmw.services.UserService;
 
 @Controller
 public class DashboardController {
 	
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userService;
 
 
     @RequestMapping("/")
@@ -24,7 +24,7 @@ public class DashboardController {
     
     @RequestMapping("/index")
     public String index(Model model) {
-    	Iterable<User> user = userServiceImpl.listAll();
+    	Iterable<User> user = userService.listAll();
 		model.addAttribute("Users", user);
 
         return "index";
