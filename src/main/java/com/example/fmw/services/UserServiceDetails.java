@@ -13,7 +13,6 @@ import com.example.fmw.entity.Role;
 import com.example.fmw.entity.User;
 
 public class UserServiceDetails implements UserDetails {
-
 	/**
 	 * 
 	 */
@@ -23,7 +22,7 @@ public class UserServiceDetails implements UserDetails {
 	public UserServiceDetails(User user) {
 		this.user = user;
 	}
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<Role> roles = user.getRoles();
@@ -63,6 +62,10 @@ public class UserServiceDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
+
+		//if (this.user.getId() == null)
+		//	return false;
+
 		return true;
 	}
 

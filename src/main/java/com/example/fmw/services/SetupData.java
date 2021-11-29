@@ -22,7 +22,7 @@ public class SetupData implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         if (alreadySetup)
             return;
-        createRoleIfNotFound("ADMIN");
+        createRoleIfNotFound("ROLE_ADMIN");
         createRoleIfNotFound("USER");
 
     }
