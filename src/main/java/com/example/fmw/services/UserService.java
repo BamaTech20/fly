@@ -57,20 +57,8 @@ public class UserService {
 
 	public void update(User user) {
 
-		User us = userRepository.findByid(user.getId());
-		us.setFirstName(user.getFirstName());
-
-		if (us.getFirstName() != null) {
-			us.setFirstName(user.getFirstName());
-		}
-		if (us.getLastName() != null) {
-			us.setLastName(user.getLastName());
-		}
-		if (us.getPassword() != null) {
-			us.setPassword(user.getPassword());
-		}
-
-		userRepository.save(us);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userRepository.save(user);
 
 	}
 

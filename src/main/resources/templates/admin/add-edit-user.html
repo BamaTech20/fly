@@ -54,7 +54,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Email</label>
 							<div class="col-sm-10">
-								<input type="email" class="form-control" th:field="*{email}" />
+								<input type="email" class="form-control" th:field="*{Email}" />
 							</div>
 						</div>
 
@@ -62,8 +62,8 @@
 							<label class="col-4 col-form-label">Roles: </label>
 							<div class="col-8">
 								<th:block th:each="role: ${listRoles}">
-									<input type="checkbox" th:field="*{roles}"
-										th:text="${role.name}" th:value="${role.id}" class="m-2" />
+									<input type="checkbox" th:text="${role.name}"
+										th:value="${role.id}" class="m-2" th:field="*{roles}" />
 								</th:block>
 							</div>
 						</div>
@@ -76,7 +76,7 @@
 						</div>
 
 					</div>
-					/.box-body
+
 					<div class="box-footer center">
 						<a th:href="@{/admin/list}">
 							<button type="button" class="btn btn-default">
@@ -87,7 +87,7 @@
 							<i class="fa fa-save"></i> Sauvegarde
 						</button>
 					</div>
-					/.box-footer
+
 				</form>
 			</div>
 			<!-- /.box -->
