@@ -23,7 +23,7 @@
 			<h2 class="sub-header">Ajouter un admin</h2>
 			<div class="table-responsive">
 
-				<div th:if="${param.username}">
+				<div th:if="${param.error}">
 					<div class="alert alert-danger">Cet utilisateur exsiste</div>
 				</div>
 

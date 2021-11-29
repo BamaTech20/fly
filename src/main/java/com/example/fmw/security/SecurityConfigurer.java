@@ -54,7 +54,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/");
-	//	http.authorizeRequests().antMatchers("/admin/edit**/**").hasAuthority("ADMIN");
 		http.authorizeRequests().antMatchers("/admin/edit/**").hasRole("ADMIN");
 
 		http.authorizeRequests()

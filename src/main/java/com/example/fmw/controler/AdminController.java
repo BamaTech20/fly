@@ -76,13 +76,13 @@ public class AdminController {
 
 	@PostMapping("/register")
 	public String registerUserAccount(@Valid @ModelAttribute("userRegistrationDto") User user, BindingResult result,
-			Model model, String username) {
+			Model model, String email) {
 		model.addAttribute("userRegistrationDto", user);
 
-		User userExists = userRepository.findByEmail(username);
+		User userExists = userRepository.findByEmail(email);
 
 		if (userExists != null) {
-			return "redirect:/register?username";
+			return "redirect:/admin/list?error";
 		}
 		// if(result.hasErrors()){ return "admin/auth/register"; }
 
