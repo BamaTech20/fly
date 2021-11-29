@@ -87,7 +87,7 @@ public class AdminController {
 		// if(result.hasErrors()){ return "admin/auth/register"; }
 
 		userService.save(user);
-		return "redirect:/register?success";
+		return "redirect:/admin/list?success";
 	}
 	//"admin/list-admin"
 
