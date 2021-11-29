@@ -55,6 +55,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/");
 		http.authorizeRequests().antMatchers("/admin/edit**/**").hasAnyAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/admin/edit**/**").hasRole("ADMIN");
 
 		http.authorizeRequests()
 				.antMatchers("/login", "/register_user", "/webjars/**", "/style2.css/**", "/style.css/**")
