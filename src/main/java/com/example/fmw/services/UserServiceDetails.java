@@ -63,9 +63,10 @@ public class UserServiceDetails implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 
-		//if (this.user.getId() == null)
-		//	return false;
-
+		if (user.getActive() == false)return false;
+			
+	  //  if(user.getActive() != false) return false;
+	    
 		return true;
 	}
 

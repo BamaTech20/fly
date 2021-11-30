@@ -62,7 +62,7 @@ public class AdminController {
 
 	@PostMapping("/update")
 	public String update(User user) {
-
+		
 		userService.update(user);
 		return list_redirect;
 	}

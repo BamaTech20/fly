@@ -62,22 +62,23 @@ public class UserService {
 
 	}
 
-	/*
-	 * @Override public User save2(AdminRegistration registrationDto) {
-	 * 
-	 * // Creating user role user User user = new
-	 * User(registrationDto.getFirstName(), registrationDto.getLastName(),
-	 * registrationDto.getUserName(),
-	 * passwordEncoder.encode(registrationDto.getPassword()),
-	 * Arrays.asList(roleRepository.findByName("USER")));
-	 * 
-	 * return userRepository.save(user); }
-	 */
-
-	/*
-	 * public void update(AdminRegistration user, User use) {
-	 * 
-	 * userRepository.update(user.getFirstName(), user.getLastName(),
-	 * passwordEncoder.encode(use.getPassword()), use.getId()); }
-	 */
 }
+
+/*
+ * @Override public User save2(AdminRegistration registrationDto) {
+ * 
+ * // Creating user role user User user = new
+ * User(registrationDto.getFirstName(), registrationDto.getLastName(),
+ * registrationDto.getUserName(),
+ * passwordEncoder.encode(registrationDto.getPassword()),
+ * Arrays.asList(roleRepository.findByName("USER")));
+ * 
+ * return userRepository.save(user); }
+ */
+
+/*
+ * public void update(AdminRegistration user, User use) {
+ * 
+ * userRepository.update(user.getFirstName(), user.getLastName(),
+ * passwordEncoder.encode(use.getPassword()), use.getId()); }
+ */

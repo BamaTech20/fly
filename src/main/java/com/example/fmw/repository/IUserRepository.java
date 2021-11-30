@@ -12,6 +12,7 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
 	User findByid(Long User_id);
 	//User findByUsername(String email);   
+	User findBypassword(String password);
 
 	/*
 	 * @Modifying
